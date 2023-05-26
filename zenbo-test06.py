@@ -6,17 +6,22 @@ host = '192.168.1.104'
 sdk = pyzenbo.connect(host)
 key = open("key.txt", "r", encoding="utf-8").read()
 openai.api_key= key
-response = openai.Completion.create(
-    engine = "gpt-3.5-turbo",    # select model
-    prompt = "ChatGPT是什麼？",     
-    max_tokens = 512,               # response tokens
-    temperature = 1,                # diversity related
-    top_p = 0.75,                   # diversity related
-    n = 1,                          # num of response
-)
 
-completed_text = response["choices"][0]["text"]
-print(completed_text)
-
+sdk.robot.speak("你有什麼想問的嗎？")
+prompt = input("Your prompt: ")
+while prompt != "exit" and prompt !="":
+    sdk.robot.set_expression(RobotFace.PLEASED, "你剛剛問我，"+prompt)
+    response = openai.Completion.create(
+        engine='text-davinci-003',
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=100,
+        n=1,
+        stop=None,
+    )
+    reply = response.choices[0].text.strip()
+    sdk.robot.speak("我的回答是："+reply)
+    sdk.robot.speak("你還有什麼想問的嗎？")
+    prompt = input("Your prompt: ")
 sdk.robot.set_expression(RobotFace.HIDEFACE) 
 sdk.release()
