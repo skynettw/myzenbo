@@ -7,7 +7,7 @@ sdk = pyzenbo.connect(host)
 key = open("key.txt", "r", encoding="utf-8").read()
 openai.api_key= key
 
-sdk.robot.speak("你有什麼想問的嗎？")
+sdk.robot.set_expression(RobotFace.PLEASED, "你有什麼想問的嗎？")
 prompt = input("Your prompt: ")
 while prompt != "exit" and prompt !="":
     sdk.robot.set_expression(RobotFace.PLEASED, "你剛剛問我，"+prompt)
