@@ -2,7 +2,7 @@ import pyzenbo
 import openai
 from pyzenbo.modules.dialog_system import RobotFace
 
-host = '192.168.1.104'
+host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 key = open("key.txt", "r", encoding="utf-8").read()
 openai.api_key= key

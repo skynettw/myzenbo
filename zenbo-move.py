@@ -2,7 +2,7 @@ import pyzenbo
 import time
 from pyzenbo.modules.dialog_system import RobotFace
 
-host = '192.168.1.104'
+host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 sdk.robot.speak("出發！")
 for i in range(10):

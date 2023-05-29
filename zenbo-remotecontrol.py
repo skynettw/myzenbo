@@ -3,7 +3,7 @@ from pynput import keyboard
 
 from pyzenbo.modules.dialog_system import RobotFace
 
-host = '192.168.1.104'
+host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 
 def on_press(key):

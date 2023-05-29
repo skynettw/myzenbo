@@ -1,7 +1,7 @@
 import pyzenbo, time
 from pyzenbo.modules.dialog_system import RobotFace
 
-host = '192.168.1.104'
+host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 
 sdk.robot.set_expression(RobotFace.PLEASED, "我要開始表演囉")

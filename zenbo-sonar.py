@@ -6,7 +6,7 @@ def on_result(**kwargs):
     global result
     result = kwargs
 
-host = '192.168.1.104'
+host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 sdk.on_result_callback = on_result
 sdk.robot.set_expression(RobotFace.PLEASED, "開始前進")
