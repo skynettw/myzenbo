@@ -10,11 +10,16 @@ host = open('ip.txt', "r", encoding="utf-8").read()
 sdk = pyzenbo.connect(host)
 sdk.on_result_callback = on_result
 sdk.robot.set_expression(RobotFace.PLEASED, "開始前進")
-sdk.motion.remote_control_body(1, True,100)
+sdk.motion.remote_control_body(1, True, 100)
 for i in range(5):
-    data = sdk.sensor.get_sonar(2)
-    print(result['result']['SENSOR_VALUE'])
-    time.sleep(1)
+    data = sdk.sensor.get_sonar(2,True, 10)
+    try:
+        dist = result['result']['SENSOR_VALUE']
+        print(dist)
+        sdk.robot.speak(str(round(dist*100))+"公分")
+    except:
+        pass
+    time.sleep(2)
     
 sdk.motion.remote_control_body(0, True,100)
 sdk.robot.set_expression(RobotFace.PLEASED, "任務結束")
